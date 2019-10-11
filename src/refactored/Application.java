@@ -4,6 +4,7 @@ import refactored.actions.Action;
 import refactored.parser.Parser;
 import refactored.parser.QueryParser;
 import refactored.stack.DoubleStack;
+import refactored.stack.Stack;
 import refactored.window.SimpleWindow;
 import refactored.window.Window;
 
@@ -16,7 +17,7 @@ public class Application {
 
 	private Window window;
 	private Parser parser;
-	private DoubleStack stack;
+	private Stack stack;
 
 	public Application() {
 		window = SimpleWindow.createWindow("Calculator");
@@ -27,10 +28,10 @@ public class Application {
 	private void setup() {
 		parser.setOnExit(() -> window.exit());
 		parser.setOnEmpty(() -> {});
-		parser.setOnClear(() -> {window.clear(); stack.clear();});
+		parser.setOnClear(() -> stack.clear());
 		parser.setOnDigit(digit -> stack.push(digit));
 		parser.setOnInvalid(operation -> window.showMessage("'"+operation+"' is an illegal command"));
-		parser.setOnBinaryOperator((() -> new Double[]{stack.pop(), stack.pop()}), value -> stack.push(value));
+		parser.setOnBinaryOperator((() -> stack.pop(2)), value -> stack.push(value));
 		parser.setOnUnaryOperator(() -> stack.pop(), value -> stack.push(value));
 	}
 
@@ -38,18 +39,18 @@ public class Application {
 		window.show(true);
 		while (true){
 			refreshDisplay();
-			parseOperation()
+			parseOperation(window.getInput())
 				.execute();
 		}
 	}
 
 	private void refreshDisplay() {
 		window.clear();
-		window.appendToOutput(stack.depth() == 0 ? parser.getDefaultMessage() : stack.toString());
+		window.appendToOutput(stack.isEmpty() ? parser.getDefaultMessage() : stack.toString());
 	}
 
-	private Action parseOperation() {
-		return parser.parse(window.getInput());
+	private Action parseOperation(String input) {
+		return parser.parse(input);
 	}
 
 

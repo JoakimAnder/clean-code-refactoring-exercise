@@ -47,3 +47,6 @@ out/production/clean-code-refactoring-exercise/exercise/RefactoringExercise.pdf
 .idea/modules.xml
 .idea/uiDesigner.xml
 out/production/clean-code-refactoring-exercise/META-INF/clean-code-refactoring-exercise.kotlin_module
+.idea/vcs.xml
+output/production/clean-code-refactoring-exercise/exercise/RefactoringExercise.pdf
+.idea/vcs.xml

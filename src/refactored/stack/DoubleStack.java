@@ -5,7 +5,7 @@ import java.util.Arrays;
 import javax.swing.JOptionPane;
 
 
-public class DoubleStack {
+public class DoubleStack implements Stack {
 	private double[] stackArray;
 	private int depthInt;
 	
@@ -18,12 +18,16 @@ public class DoubleStack {
 		return depthInt;
 	}
 	
-	public void push(double value) { // assuming that the stack never gets overfilled!
+	public void push(Double value) { // assuming that the stack never gets overfilled!
 		stackArray[depthInt] = value;
 		depthInt++;
 	}
+
+	public boolean isEmpty() {
+		return depthInt == 0;
+	}
 	
-	public double pop(){
+	public Double pop(){
 		if (depthInt == 0){
 			JOptionPane.showMessageDialog(null, "Pop - stack empty, returning 0!");
 			return 0.0;
@@ -32,14 +36,14 @@ public class DoubleStack {
 			return stackArray[depthInt];
 		}
 	}
-	
-	public double peek(){
-		if (depthInt == 0){
-			JOptionPane.showMessageDialog(null, "Peek - stack empty, returning 0!");
-			return 0.0;
-		} else {
-			return stackArray[depthInt-1];
+
+	@Override
+	public Double[] pop(int amount) {
+		Double[] popped = new Double[amount];
+		for (int i = amount-1; i >= 0; i--) {
+			popped[i] = pop();
 		}
+		return popped;
 	}
 
 	public String toString() {

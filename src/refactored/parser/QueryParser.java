@@ -22,7 +22,7 @@ public class QueryParser extends Parser {
         } else if(command == '*') {
             return () -> getOnBinaryOperator().execute(xy -> xy[0] * xy[1]);
         } else if(command == '/') {
-            return () -> getOnBinaryOperator().execute(xy -> xy[1] / xy[0]);
+            return () -> getOnBinaryOperator().execute(xy -> xy[0] / xy[1]);
         } else if(command == 'c') {
             return () -> getOnClear().execute();
         } else if(command == 'q') {
