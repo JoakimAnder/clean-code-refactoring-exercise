@@ -1,6 +1,6 @@
-package refactored.window;
+package refactored2.window;
 
-import refactored.window.text.TextBox;
+import refactored2.window.text.TextBox;
 
 import java.util.function.Consumer;
 

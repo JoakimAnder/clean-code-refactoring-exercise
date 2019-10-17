@@ -1,16 +1,14 @@
-package refactored.window;
+package refactored2.window;
 
-import refactored.window.text.FunctionalTextBox;
-import refactored.window.text.TextBox;
-import refactored.actions.Action;
+import refactored2.window.text.FunctionalTextBox;
+import refactored2.window.text.TextBox;
+import refactored2.actions.Action;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.function.Consumer;
-
-import javax.swing.*;
-
 
 
 public class SimpleWindow implements Window {
